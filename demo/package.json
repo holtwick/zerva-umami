@@ -12,7 +12,7 @@
     "start": "zerva index.ts"
   },
   "dependencies": {
-    "zeed": "^0.7.45",
+    "zeed": "^0.7.46",
     "zerva": "^0.4.35",
     "zerva-umami": "file:.."
   },

@@ -48,9 +48,10 @@
   },
   "dependencies": {
     "@types/request-ip": "^0.0.37",
+    "cross-fetch": "^3.1.4",
     "request-ip": "^2.1.3",
-    "zeed": ">=0.7.45",
-    "zerva": ">=0.4.34"
+    "zeed": ">=0.7.46",
+    "zerva": ">=0.4.35"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",

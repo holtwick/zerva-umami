@@ -1,17 +1,20 @@
 import { getClientIp } from "request-ip"
 import { fetchOptionsJson, fetchText, Logger } from "zeed"
+import { fetch } from "cross-fetch"
 
 const log = Logger("track")
 
-let umamiTrackUrl: string
+let umamiCollectUrl: string
 let umamiWebsiteId: string
 
 export function setTrackWebsiteId(id: string) {
   umamiWebsiteId = id
+  log.info("Umami website ID:", umamiWebsiteId)
 }
 
 export function setTrackCollectUrl(url: string) {
-  umamiTrackUrl = url
+  umamiCollectUrl = url
+  log.info("Umami collect URL:", umamiCollectUrl)
 }
 
 type TrackEvent = {
@@ -75,7 +78,7 @@ export async function track(opt: TrackEvent | TrackPageview) {
 
       // log.info(`track ${type} to ${umamiTrackUrl}:`, options)
 
-      let response = await fetchText(umamiTrackUrl, options)
+      let response = await fetchText(umamiCollectUrl, options, fetch)
       // log.info("tracked", response)
     } catch (err) {
       log.warn("Failed to track", err)
@@ -89,6 +92,7 @@ export async function trackEvent(
   event_value: string,
   url?: string
 ) {
+  log.info(`event ${event_type}=${event_value}`)
   await track({
     type: "event",
     event_type,
@@ -99,6 +103,7 @@ export async function trackEvent(
 }
 
 export async function trackPageView(req: any, url?: string) {
+  log.info(`pageview ${url}`)
   await track({
     type: "pageview",
     url,

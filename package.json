@@ -42,7 +42,7 @@
     "check": "tsc --noEmit -p tsconfig.json",
     "clean": "rm -rf dist",
     "watch": "tsc -w -p tsconfig.json",
-    "prepublishOnly": "npm test && npm run build",
+    "prepublishOnly": "npm run build",
     "test": "jest src",
     "global": "pnpm -g ln"
   },

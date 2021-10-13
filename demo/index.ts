@@ -1,4 +1,4 @@
-// <reference path="node_modules/zerva-module-template/dist/esm/index.d.ts" />
+// <reference path="node_modules/zerva-umami/dist/esm/index.d.ts" />
 
 // Simple demo for node and CommonJS loading
 
@@ -10,8 +10,8 @@ import {
   setupEnv,
   valueToInteger,
 } from "zeed"
-import { on, serve, useHttp } from "zerva"
-import { useCounter } from "zerva-module-template"
+import { serve, useHttp } from "zerva"
+import { useUmami } from "zerva-umami"
 
 Logger.setHandlers([
   LoggerFileHandler("zerva.log", {
@@ -34,12 +34,9 @@ useHttp({
   port: valueToInteger(process.env.PORT, 8080),
 })
 
-on("counterIncrement", (counter) => {
-  log.info("counter inc", counter)
-})
-
-useCounter({
-  start: valueToInteger(process.env.MODULENAME_START),
+useUmami({
+  collectUrl: process.env.UMAMI_COLLECT_URL,
+  websiteId: process.env.UMAMI_WEBSITE_ID,
 })
 
 serve()

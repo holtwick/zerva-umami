@@ -2,6 +2,12 @@ export {}
 
 declare global {
   interface ZContextEvents {
-    counterIncrement(counter: number): void
+    trackEvent(
+      req: any,
+      event_type: string,
+      event_value: string,
+      url?: string
+    ): void
+    trackPageView(req: any, url?: string): void
   }
 }

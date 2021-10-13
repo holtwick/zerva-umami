@@ -1,24 +1,29 @@
 // (C)opyright 2021 Dirk Holtwick, holtwick.it. All rights reserved.
 
 import { Logger } from "zeed"
-import { emit, on, register } from "zerva"
+import { on, register } from "zerva"
+import {
+  setTrackCollectUrl,
+  setTrackWebsiteId,
+  trackEvent,
+  trackPageView,
+} from "./track-umami"
 
-const name = "counter"
+const name = "uammi"
 const log = Logger(`zerva:${name}`)
 
 interface Config {
-  start?: number
+  collectUrl: string
+  websiteId: string
 }
 
-export function useCounter(config: Config) {
-  const { start = 0 } = config
+export function useUmami(config: Config) {
   log.info(`use ${name}`)
-  register(name, ["http"])
-  let counter = start
-  on("httpInit", ({ get }) => {
-    get("/", async () => {
-      await emit("counterIncrement", ++counter)
-      return `Counter ${counter}.<br><br>Reload page to increase counter.`
-    })
-  })
+  register(name)
+
+  setTrackCollectUrl(config.collectUrl)
+  setTrackWebsiteId(config.websiteId)
+
+  on("trackEvent", trackEvent)
+  on("trackPageView", trackPageView)
 }

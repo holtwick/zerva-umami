@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "zeed": "^0.7.45",
-    "zerva": "^0.4.34",
-    "zerva-module-template": "file:.."
+    "zerva": "^0.4.35",
+    "zerva-umami": "file:.."
   },
   "author": "Dirk Holtwick",
   "license": "MIT"

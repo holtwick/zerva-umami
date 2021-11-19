@@ -2,31 +2,9 @@
 
 // Simple demo for node and CommonJS loading
 
-import {
-  Logger,
-  LoggerFileHandler,
-  LoggerNodeHandler,
-  LogLevel,
-  setupEnv,
-  suid,
-  valueToInteger,
-} from "zeed"
-import { serve, useHttp, on, emit } from "zerva"
+import { Logger, setupEnv, suid, valueToInteger } from "zeed"
+import { emit, on, serve, useHttp } from "zerva"
 import { useUmami } from "zerva-umami"
-
-Logger.setHandlers([
-  LoggerFileHandler("zerva.log", {
-    level: LogLevel.debug,
-  }),
-  LoggerNodeHandler({
-    level: LogLevel.info,
-    filter: "*",
-    colors: true,
-    padding: 16,
-    nameBrackets: false,
-    levelHelper: false,
-  }),
-])
 
 setupEnv()
 

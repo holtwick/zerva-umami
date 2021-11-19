@@ -9,7 +9,7 @@
     "node": ">=14.13.1"
   },
   "scripts": {
-    "start": "zerva index.ts"
+    "start": "ZEED=* zerva index.ts"
   },
   "dependencies": {
     "zeed": "^0.7.46",
